@@ -2,21 +2,14 @@
 
 body {
   font-family: "Mulish", sans-serif;
-  background-color: #7158e2;
+  /* background-color: #7158e2; */
   color: #fff;
   height: 100vh;
-
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-
-  /* margin: 0; */
-  overflow: hidden;
 }
 
 .containers {
-  width: 300px;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 400px;
+  background-color: orange;
   padding: 20px 40px;
   border-radius: 5px;
 
@@ -47,26 +40,34 @@ body {
 
 .form-group input:focus {
   outline: 0;
-  border-bottom-color: #4287f5;
+  border-bottom-color: rgb(226, 196, 156);
 }
 
 .btn {
   width: 100%;
-  background-color: #4287f5;
+  background-color: rgb(247, 240, 240);
+  color: orangered;
   font-family: inherit;
   font-size: 16px;
+  font-weight: 900;
   padding: 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.btn:hover {
+  background-color: rgb(247, 240, 240);
+  color: orangered;
+  border: 2px solid orange;
+}
+
 .btn:focus {
-  outline: 0;
+  outline: none;
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .text {
@@ -75,7 +76,7 @@ body {
 
 .containers span {
   text-decoration: none;
-  color: #4287f5;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -93,7 +94,7 @@ body {
 .form-group input:focus + label span,
 .form-group input:valid + label span {
   /*valid par yin required htae pho lo*/
-  color: #4287f5;
+  color: #fff;
   transform: translateY(-30px);
 }
 
@@ -102,4 +103,15 @@ body {
   /* padding: 5px 0; */
   /* background-color: red; */
   margin-bottom: 10px;
+}
+
+.productName {
+  color: orange;
+  font-weight: bold;
+}
+
+.text span {
+  color: orangered;
+  font-size: 16px;
+  font-weight: bold;
 }

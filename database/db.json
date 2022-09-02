@@ -1,0 +1,19 @@
+{
+    "posts":[
+        {
+            "title":"post title 1",
+            "id":1,
+            "body":"lorem ipsun"
+        },
+        {
+            "title":"post title 2",
+            "id":2,
+            "body":"lorem ipsun"
+        },
+        {
+            "title":"post title 3",
+            "id":3,
+            "body":"lorem ipsun"
+        }
+    ]
+}

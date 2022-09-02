@@ -4,10 +4,10 @@ import { auth } from "../firebase/config";
 
 let user = ref(auth.currentUser);
 onAuthStateChanged(auth, (_user) => {
-  console.log("user is", _user);
+  // console.log("user is", _user);
   user.value = _user;
 
-  console.log(user.value.displayName);
+  // console.log(user.value.displayName);
 });
 
 let getUser = () => {

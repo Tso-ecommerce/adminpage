@@ -2,7 +2,7 @@
   <div>
     <div class="containers" v-if="showLoginForm">
        <Login @GoToAdmin="GoToAdmin"></Login>
-       <p class="text">Don't have an account ? <span @click="showLoginForm=false">Signup Now</span></p>
+       <p class="text">Don't have an account ? <span class="text-span" @click="showLoginForm=false">Signup Now</span></p>
     </div>
     <div class="containers" v-else>
        <Signup @GoToAdmin="GoToAdmin"></Signup>
