@@ -31,13 +31,17 @@
 
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="avaliable" v-model="avaliable" @click="avaliable=!avaliable">
-                    <label class="form-check-label" for="avaliable">
+                    <label class="form-check-label text-dark" for="avaliable">
                         Avaliable
                     </label>
                 </div>
 
                 <button class="my-3 save">Save</button>
         </form>
+
+        <div v-else class="loading">
+            <div class="spinner-grow text-primary"></div>
+        </div>
     </div>
 </template>
 
@@ -118,6 +122,10 @@ export default {
         border: 2px solid orange;
     }
 
+    label{
+        color: orangered;
+    }
+
     .save{
         width: 100%;
         padding: 10px 0;
@@ -129,5 +137,12 @@ export default {
 
     .save:active{
         transform: scale(0.98);
+    }
+
+    .loading{
+        /* background: red; */
+        height: 90vh;
+        display:flex;
+        align-items: center;
     }
 </style>

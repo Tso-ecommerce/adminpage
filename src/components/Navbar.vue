@@ -14,8 +14,8 @@
                     </div>
 
                     <ul class="navbar-nav flex-column mt-4">
-                        <router-link class="nav-link" :to="{name:'Admin'}">Product</router-link>
-                        <router-link class="nav-link" :to="{name:'Create'}">Create Product</router-link>
+                        <router-link class="nav-link" active-class="active" :to="{name:'Admin'}">Product</router-link>
+                        <router-link class="nav-link" active-class="active" :to="{name:'Create'}">Create Product</router-link>
                         
                     </ul>
 
@@ -103,4 +103,9 @@ export default {
     width: 80%;
     margin: 20px auto;
  }   
+
+ .active{
+    background-color: rgb(212, 161, 143);
+    color: aliceblue;
+ }
 </style>

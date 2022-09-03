@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     
-    <div class="row">
+    <div class="row" v-if="products.length">
           <div class="card col-12 col-md-6 col-lg-4 mx-auto" v-for="(product,index) in products">
             <div class="imgContainer">
               <img :src="product.image" class="card-img-top" alt="img">
@@ -26,7 +26,14 @@
           </div>
     </div>
 
-    <div v-if="error">{{error}}</div>
+    <div v-else-if="error">{{error}}</div>
+
+    <div v-else>
+      <button class="btn btn-warning" type="button" disabled>
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
+    </div>
       
   </div>
 </template>

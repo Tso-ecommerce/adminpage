@@ -4,7 +4,7 @@
             <form class="forms" @submit.prevent="addProduct">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="category" placeholder="Product Name" v-model="category" required>
+                        <input type="text" class="form-control" id="category" placeholder="Product Category" v-model="category" required>
                     </div>
 
                     <div class="mb-3">
@@ -31,7 +31,7 @@
 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="avaliable" checked v-model="avaliable" @click="avaliable=!avaliable">
-                        <label class="form-check-label" for="avaliable">
+                        <label class="form-check-label text-dark" for="avaliable">
                             Avaliable
                         </label>
                     </div>
@@ -41,6 +41,9 @@
             <div v-if="error">
                 <p>{{error}}</p>
             </div>
+            <!-- <div v-else class="loading">
+                <div class="spinner-grow text-primary"></div>
+            </div> -->
     </div>
 </template>
 
@@ -109,6 +112,10 @@ export default {
         border: 2px solid orange;
     }
 
+    label{
+        color: orangered;
+    }
+
     .save{
         width: 100%;
         padding: 10px 0;
@@ -120,5 +127,12 @@ export default {
 
     .save:active{
         transform: scale(0.98);
+    }
+
+    .loading{
+        /* background: red; */
+        height: 90vh;
+        display:flex;
+        align-items: center;
     }
 </style>
