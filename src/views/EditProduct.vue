@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-3 d-flex justify-content-center align-items-center flex-column">
             <h3 class="productName">Edit Product {{name}}</h3>
-         <form class="forms" @submit.prevent="updateProduct" v-if="name">
+         <form class="forms" @submit.prevent="updateProduct" v-if="id">
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <input type="text" class="form-control" id="category" placeholder="Product Name" v-model="category" required>
