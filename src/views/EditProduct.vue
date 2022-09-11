@@ -115,7 +115,7 @@ export default {
 <style scoped>
     .forms{
         padding: 20px 40px;
-        width: 50%;
+        /* width: 50%; */
         margin: auto;
         background: rgba(179, 172, 170, 0.2);
         border-radius: 20px;
