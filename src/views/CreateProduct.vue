@@ -4,7 +4,18 @@
             <form class="forms" @submit.prevent="addProduct">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="category" placeholder="Product Category" v-model="category" required>
+                        <div class="input-group" v-show="!addcat">
+                            <select class="form-select" v-model="category" required>
+                                <option v-for="tag in tags" :key="tag" v-bind:value="tag">{{tag}}</option>
+                            </select>
+                            <button class="categoryBtn" type="button" @click="addcat=!addcat"> + </button>
+                        </div>
+
+                        <div class="input-group" v-show="addcat">
+                            <input type="text" class="form-control" id="category" placeholder="Product category"  v-model="category" required>
+                            <button class="categoryBtn" type="button" @click="addcat=!addcat"> - </button>
+                        </div>
+                       
                     </div>
 
                     <div class="mb-3">
@@ -52,6 +63,7 @@ import { ref } from '@vue/reactivity';
 import {db} from "../firebase/config"
 import{collection,addDoc} from "firebase/firestore"
 import {useRouter} from "vue-router"
+import getProduct from "../composable/getProduct";
 export default { 
     setup(){
         let category=ref("");
@@ -62,8 +74,27 @@ export default {
         let avaliable = ref(true);
         let router = useRouter();
         let error = ref("");
+        let tags = ref([]);
+        let addcat = ref(false);
+        // console.log(addcat.value);
 
-        console.log(avaliable.value);
+        let {load,products} = getProduct();
+        load();
+        // console.log(products.value);
+
+        products.value.forEach((product)=>{
+            // console.log(product.category);
+        tags.value.push(product.category)
+            
+        })
+        
+
+        // console.log(tags.value);
+
+
+        // let getValue = (tag)=>{
+        //     console.log(tag);
+        // }
 
         let addProduct = async()=>{
            let ProductForm={
@@ -88,16 +119,9 @@ export default {
             }catch(err){
                 error.value = err.message
             }
-
-            
-
-
-            // console.log(res);
-
-
         }
 
-        return{addProduct,category,name,image,price,avaliable,unit,error}
+        return{load,tags,addProduct,category,name,image,price,avaliable,unit,error,addcat}
     }
 }
 </script>

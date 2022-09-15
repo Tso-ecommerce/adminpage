@@ -12,12 +12,6 @@
     </div>
   </div>
 </nav>
-    <!-- <div class="tagConatiner">
-        <router-link class="p" :to="{name:'Admin'}" active-class="active">All</router-link>
-         <div class="tagConatiner" v-for="tag in uniquetag">
-            <router-link class="p" active-class="active" :to="{name:'Tag',params:{tag}}">{{tag}}</router-link>
-        </div>
-    </div> -->
 </template>
 
 <script>
@@ -38,7 +32,7 @@ export default {
             return array.indexOf(tag) === index;
         })
 
-        console.log(uniquetag);
+        // console.log(uniquetag);
 
         return {uniquetag}
     }

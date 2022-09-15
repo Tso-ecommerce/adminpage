@@ -7,7 +7,7 @@ let ids = ref([]);
 
 let load = async () => {
   let res = await getDocs(collection(db, "Product"));
-  console.log(res.docs);
+  // console.log(res.docs);
   products.value = res.docs.map((doc) => {
     // console.log(doc.data());
     return { id: doc.id, ...doc.data() };

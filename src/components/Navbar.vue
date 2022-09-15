@@ -49,7 +49,7 @@ export default {
            try{
                await signOut(auth)
            }catch(err){
-                log("error")
+                console.log(err.message);
            }
         }
 

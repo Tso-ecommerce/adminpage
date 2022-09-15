@@ -4,7 +4,17 @@
          <form class="forms" @submit.prevent="updateProduct" v-if="id">
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <input type="text" class="form-control" id="category" placeholder="Product Name" v-model="category" required>
+                        <div class="input-group" v-show="!addcat">
+                            <select class="form-select" v-model="category" required>
+                                <option v-for="tag in tags" :key="tag" v-bind:value="tag">{{tag}}</option>
+                            </select>
+                            <button class="categoryBtn" type="button" @click="addcat=!addcat"> + </button>
+                        </div>
+
+                        <div class="input-group" v-show="addcat">
+                            <input type="text" class="form-control" id="category" placeholder="Product category"  v-model="category" required>
+                            <button class="categoryBtn" type="button" @click="addcat=!addcat"> - </button>
+                        </div>
                 </div>
 
                 <div class="mb-3">
@@ -51,6 +61,7 @@ import {db} from "../firebase/config"
 import {doc,getDoc} from "firebase/firestore"
 import{collection,setDoc} from "firebase/firestore"
 import { useRouter } from 'vue-router';
+import getProduct from "../composable/getProduct";
 export default { 
     props:["id"],
     setup(props){
@@ -61,6 +72,19 @@ export default {
         let unit=ref("");
         let router=useRouter();
         let avaliable = ref();
+        let tags = ref([]);
+        let addcat = ref(false);
+
+        let {load,products} = getProduct();
+        load();
+        // console.log(products.value);
+
+        products.value.forEach((product)=>{
+            // console.log(product.category);
+        tags.value.push(product.category)
+            
+        })
+        
 
         let get=async()=>{
             try{
@@ -107,7 +131,7 @@ export default {
 
         }
 
-        return{updateProduct,category,name,image,price,avaliable,unit}
+        return{tags,addcat,updateProduct,category,name,image,price,avaliable,unit}
     }
 }
 </script>
