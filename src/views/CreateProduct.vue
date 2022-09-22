@@ -6,7 +6,7 @@
                         <label for="category" class="form-label">Category</label>
                         <div class="input-group" v-show="!addcat">
                             <select class="form-select" v-model="category" required>
-                                <option v-for="tag in tags" :key="tag" v-bind:value="tag">{{tag}}</option>
+                                <option v-for="tag in uniquetag" :key="tag" v-bind:value="tag">{{tag}}</option>
                             </select>
                             <button class="categoryBtn" type="button" @click="addcat=!addcat"> + </button>
                         </div>
@@ -87,14 +87,11 @@ export default {
         tags.value.push(product.category)
             
         })
+
+        let uniquetag = tags.value.filter((tag,index,array)=>{
+            return array.indexOf(tag) === index;
+        })
         
-
-        // console.log(tags.value);
-
-
-        // let getValue = (tag)=>{
-        //     console.log(tag);
-        // }
 
         let addProduct = async()=>{
            let ProductForm={
@@ -121,7 +118,7 @@ export default {
             }
         }
 
-        return{load,tags,addProduct,category,name,image,price,avaliable,unit,error,addcat}
+        return{load,tags,addProduct,category,name,image,price,avaliable,unit,error,addcat,uniquetag}
     }
 }
 </script>
