@@ -1,23 +1,20 @@
 import { ref } from "vue";
 import { db } from "../firebase/config";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 let products = ref([]);
-let ids = ref([]);
 
-let load = async () => {
-  let res = await getDocs(collection(db, "Product"));
+let getProduct = () => {
+  return { load, products };
+};
+
+let load = async (Col) => {
+  let res = await getDocs(collection(db, Col));
   // console.log(res.docs);
   products.value = res.docs.map((doc) => {
     // console.log(doc.data());
     return { id: doc.id, ...doc.data() };
   });
-
-  // console.log(products.value);
-};
-
-let getProduct = () => {
-  return { load, products };
 };
 
 export default getProduct;

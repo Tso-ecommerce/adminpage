@@ -16,6 +16,7 @@
                     <ul class="navbar-nav flex-column mt-4">
                         <router-link class="nav-link" active-class="active" :to="{name:'Admin'}">Product</router-link>
                         <router-link class="nav-link" active-class="active" :to="{name:'Create'}">Create Product</router-link>
+                        <router-link class="nav-link" active-class="active" :to="{name:'Banner'}">Banner</router-link>
                         
                     </ul>
 
@@ -36,7 +37,6 @@
 import TagCloud from "../components/TagCloud.vue"
 import {signOut,onAuthStateChanged} from "firebase/auth";
 import { auth } from "../firebase/config";
-import { ref } from "@vue/reactivity";
 import getUser from "../composable/getUser";
 import getProduct from "../composable/getProduct"
 export default {
@@ -44,7 +44,7 @@ export default {
     setup(){
         let {user} = getUser();
         let {load,products} = getProduct();
-        load();
+        load("Product");
         let logout=async()=>{
            try{
                await signOut(auth)

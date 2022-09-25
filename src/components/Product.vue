@@ -64,18 +64,18 @@
 
 <script> 
 import { ref } from '@vue/reactivity';
-import getProduct from "../composable/getProduct"
 import {db} from "../firebase/config"
 import {doc,deleteDoc} from "firebase/firestore"
 import { useRouter } from 'vue-router';
+import getProduct from "../composable/getProduct"
 export default {
   setup(){
     
-  let {load,products} = getProduct();
+  let {load,products} =getProduct();
   let router=useRouter();
   let error = ref("")
 
-    load();
+  load("Product");
 
     let deleteProduct=async (index)=>{
       try{
@@ -89,7 +89,7 @@ export default {
 
     }
 
-    return {load,products,deleteProduct,error}
+    return {products,deleteProduct,error}
   }
 }
 </script>
@@ -121,11 +121,6 @@ export default {
 
   .btns:active{
     transform: scale(0.98);
-  }
-
-  .icons{
-    width: 50px;
-    height: 20px;
   }
 
   .modaltext{

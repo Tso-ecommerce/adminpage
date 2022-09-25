@@ -5,15 +5,15 @@
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
                         <div class="input-group" v-show="!addcat">
-                            <select class="form-select" v-model="category" required>
+                            <select class="form-select" v-model="category">
                                 <option v-for="tag in uniquetag" :key="tag" v-bind:value="tag">{{tag}}</option>
                             </select>
                             <button class="categoryBtn" type="button" @click="addcat=!addcat"> + </button>
                         </div>
 
                         <div class="input-group" v-show="addcat">
-                            <input type="text" class="form-control" id="category" placeholder="Product category"  v-model="category" required>
-                            <button class="categoryBtn" type="button" @click="addcat=!addcat"> - </button>
+                            <input type="text" class="form-control" id="category" placeholder="Product category" v-model="category" required>
+                            <button class="categoryBtn" @click="addcat=!addcat"> - </button>
                         </div>
                        
                     </div>
@@ -103,7 +103,7 @@ export default {
                 avaliable:avaliable.value
             }
 
-            // console.log(ProductForm);
+            console.log(ProductForm);
 
             try{
                 let res=await addDoc(collection(db,"Product"),ProductForm)

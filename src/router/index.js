@@ -4,6 +4,7 @@ import Create from "../views/CreateProduct.vue";
 import Edit from "../views/EditProduct.vue";
 import Tag from "../views/FilterTag.vue";
 import Admin from "../views/AdminPage.vue";
+import Banner from "../views/Banner.vue";
 import { auth } from "@/firebase/config";
 
 const routes = [
@@ -40,6 +41,12 @@ const routes = [
     path: "/products/:tag",
     name: "Tag",
     component: Tag,
+    props: true,
+  },
+  {
+    path: "/banner",
+    name: "Banner",
+    component: Banner,
     props: true,
   },
 ];

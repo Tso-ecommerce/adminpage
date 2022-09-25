@@ -59,7 +59,7 @@
 import { ref } from '@vue/reactivity';
 import {db} from "../firebase/config"
 import {doc,getDoc} from "firebase/firestore"
-import{collection,setDoc} from "firebase/firestore"
+import{setDoc} from "firebase/firestore"
 import { useRouter } from 'vue-router';
 import getProduct from "../composable/getProduct";
 export default { 
@@ -76,7 +76,7 @@ export default {
         let addcat = ref(false);
 
         let {load,products} = getProduct();
-        load();
+        load("Product");
         // console.log(products.value);
 
         products.value.forEach((product)=>{
