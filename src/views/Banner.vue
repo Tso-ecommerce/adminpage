@@ -3,7 +3,7 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
         <div class="carousel-inner">
             <div class="carousel-item active bannerimgs" v-for="banner in products" :key="banner.id">
-            <img :src="banner.image" class="w-100" alt="...">
+            <img :src="banner.image" class="w-100" alt="..." @dblclick="deletebanner(banner.id)">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -63,7 +63,7 @@
 import getProduct from '@/composable/getProduct';    
 import { ref } from '@vue/reactivity';
 import {db} from "../firebase/config"
-import{collection,addDoc} from "firebase/firestore"
+import{collection,addDoc,deleteDoc,doc} from "firebase/firestore"
 import { useRouter } from 'vue-router';
 export default {
     setup(){
@@ -93,11 +93,29 @@ export default {
             }
         }
 
+        let deletebanner = async (id)=>{
+            console.log(id);
+            if(confirm("are u delete")){
+                // console.log("yes");
+                try{
+                    await deleteDoc(doc(db,"Banners",id))
+
+                    router.go({name:"Banners"})
+                }catch(err){
+                    error.value = err.message
+                    // console.log(err.message);
+                }
+            }else{
+                // console.log("No");
+            }
+            
+        }
+
 
 
         console.log(products.value);
 
-        return {products,load,image,error,addProduct};
+        return {products,load,image,error,addProduct,deletebanner};
     }
 }
 </script>
@@ -157,5 +175,16 @@ export default {
     transform: translate(-50%,-50%);
     font-size: 100px;
     color:orangered;
+}
+
+.btns{
+    border: none;
+    padding: 5px 10px;
+    background : orange;
+    border-radius: 10px;
+}
+
+.btns:focus{
+    transform: scale(0.95);
 }
 </style>
